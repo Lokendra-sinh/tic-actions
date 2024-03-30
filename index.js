@@ -48,7 +48,7 @@ async function updateGameState(gameState) {
 async function main() {
   try {
     let gameState = await getGameState();
-    const move = "A1";
+    const move = process.env.MOVE;
 
     if (!gameState) {
       gameState = {
