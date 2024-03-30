@@ -1,0 +1,50 @@
+name: Update Game Board
+
+on:
+  push:
+    branches:
+      - master
+  issues:
+    types: [opened]
+
+jobs:
+  update_game_board:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate board and image
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: 'ap-south-1'
+        run: node index.js
+
+      - name: Get current count
+        id: count
+        run: echo "::set-output name=count::$(git rev-list --count HEAD)"
+
+      - name: Update README
+        run: |
+          echo "# Game Board" > README.md
+          echo "![Game Board](https://tic-actions.s3.ap-south-1.amazonaws.com/game-board.png)" >> README.md
+          echo "" >> README.md
+          echo "Workflow run count: ${{ steps.count.outputs.count }}" >> README.md
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.email "your-username@users.noreply.github.com"
+          git config --global user.name "Your Name"
+          git add README.md
+          git commit -m "Update game board image and count"
+          git push
