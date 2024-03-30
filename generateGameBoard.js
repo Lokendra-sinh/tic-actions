@@ -33,14 +33,14 @@ function generateGameBoard() {
   for(let i = 0; i < 3; i++){
     ctx.font = "30px Arial";
     ctx.fillStyle = "blue";
-    ctx.fillText(row[i], 50, 100 + (i + 1) * boxSize - 100);
+    ctx.fillText(row[i], 50, 100 + (i + 1) * boxSize - 75);
   }
 
     // render column titles (1, 2, 3)
     for(let i = 0; i < 3; i++){
         ctx.font = "30px Arial";
         ctx.fillStyle = "green";
-        ctx.fillText(col[i], 100 + (i + 1) * boxSize - 50, 100);
+        ctx.fillText(col[i], 100 + (i + 1) * boxSize - 75, 50);
         }
 
   ctx.stroke();
