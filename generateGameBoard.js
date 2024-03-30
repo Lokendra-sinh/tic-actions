@@ -11,6 +11,7 @@ function generateGameBoard(gameState) {
   const canvas = createCanvas(canvasWidth, canvasHeight);
   const ctx = canvas.getContext("2d");
 
+  ctx.clearRect(0, 0, canvasWidth, canvasHeight);
   ctx.beginPath();
   ctx.fillStyle = "black";
   ctx.fillRect(0, 0, canvasWidth, canvasHeight);

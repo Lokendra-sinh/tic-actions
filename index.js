@@ -56,6 +56,10 @@ async function main() {
         currentPlayer: "O",
       };
     } else {
+        if(gameState.moves.some(m => m.position === move)){
+            console.log("Invalid move");
+            return;
+        }
       const player = gameState.currentPlayer;
       gameState.moves.push({ position: move, player });
       gameState.currentPlayer = player === "X" ? "O" : "X";
