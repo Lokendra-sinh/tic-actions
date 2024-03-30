@@ -1,6 +1,6 @@
 const { createCanvas } = require("canvas");
 
-function generateGameBoard() {
+function generateGameBoard(gameState) {
   const containerHeight = 500;
   const containerWidth = 500;
   const canvasHeight = containerHeight + 200;
@@ -42,6 +42,61 @@ function generateGameBoard() {
         ctx.fillStyle = "green";
         ctx.fillText(col[i], 100 + (i + 1) * boxSize - 75, 50);
         }
+
+    // render moves
+
+    gameState.moves.forEach(move => {
+
+        switch (move.position){
+            case 'A1':
+                ctx.font = "30px Arial";
+                ctx.fillStyle = "white";
+                ctx.fillText(move.player, 100 + 0.5 * boxSize, 100 + 0.5 * boxSize);
+                break;
+            case 'A2':
+                ctx.font = "30px Arial";
+                ctx.fillStyle = "white";
+                ctx.fillText(move.player, 100 + 0.5 * boxSize, 100 + 1.5 * boxSize);
+                break;
+            case 'A3':
+                ctx.font = "30px Arial";
+                ctx.fillStyle = "white";
+                ctx.fillText(move.player, 100 + 0.5 * boxSize, 100 + 2.5 * boxSize);
+                break;
+            case 'B1':
+                ctx.font = "30px Arial";
+                ctx.fillStyle = "white";
+                ctx.fillText(move.player, 100 + 1.5 * boxSize, 100 + 0.5 * boxSize);
+                break;
+            case 'B2':
+                ctx.font = "30px Arial";
+                ctx.fillStyle = "white";
+                ctx.fillText(move.player, 100 + 1.5 * boxSize, 100 + 1.5 * boxSize);
+                break;
+            case 'B3':
+                ctx.font = "30px Arial";
+                ctx.fillStyle = "white";
+                ctx.fillText(move.player, 100 + 1.5 * boxSize, 100 + 2.5 * boxSize);
+                break;
+            case 'C1':
+                ctx.font = "30px Arial";
+                ctx.fillStyle = "white";
+                ctx.fillText(move.player, 100 + 2.5 * boxSize, 100 + 0.5 * boxSize);
+                break;
+            case 'C2':
+                ctx.font = "30px Arial";
+                ctx.fillStyle = "white";
+                ctx.fillText(move.player, 100 + 2.5 * boxSize, 100 + 1.5 * boxSize);
+                break;
+            case 'C3':
+                ctx.font = "30px Arial";
+                ctx.fillStyle = "white";
+                ctx.fillText(move.player, 100 + 2.5 * boxSize, 100 + 2.5 * boxSize);
+                break;
+            default:
+                break;
+        }
+    })
 
   ctx.stroke();
   ctx.closePath();
