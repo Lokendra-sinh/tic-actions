@@ -1,7 +1,7 @@
 const generateGameBoard = require("./generateGameBoard");
 const dotenv = require("dotenv");
 dotenv.config();
-
+console.log("Starting server...");
 const AWS = require("aws-sdk");
 
 AWS.config.update({
@@ -13,6 +13,7 @@ AWS.config.update({
 const s3 = new AWS.S3();
 
 async function getGameState() {
+    console.log("Getting game state");
   const params = {
     Bucket: "tic-actions",
     Key: "game-state.json",
@@ -28,6 +29,7 @@ async function getGameState() {
 }
 
 async function updateGameState(gameState) {
+    console.log("Updating game state");
   const params = {
     Bucket: "tic-actions",
     Key: "game-state.json",
@@ -45,7 +47,7 @@ async function updateGameState(gameState) {
 
 async function main() {
   try {
-    const gameState = await getGameState();
+    let gameState = await getGameState();
     const move = "A1";
 
     if (!gameState) {
@@ -76,3 +78,5 @@ async function main() {
     console.error("Error: ", err);
   }
 }
+
+main();
