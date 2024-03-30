@@ -13,12 +13,12 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Setup Node.js
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
-          node-version: '21'
+          node-version: '20'
 
       - name: Install dependencies
         run: npm ci
@@ -30,21 +30,14 @@ jobs:
           AWS_REGION: 'ap-south-1'
         run: node index.js
 
-      - name: Get current count
-        id: count
-        run: echo "::set-output name=count::$(git rev-list --count HEAD)"
-
       - name: Update README
         run: |
-          echo "# Game Board" > README.md
-          echo "![Game Board](https://tic-actions.s3.ap-south-1.amazonaws.com/game-board.png)" >> README.md
-          echo "" >> README.md
-          echo "Workflow run count: ${{ steps.count.outputs.count }}" >> README.md
+          echo "![Game Board](https://tic-actions.s3.ap-south-1.amazonaws.com/game-board.png)" > README.md
 
       - name: Commit and push changes
         run: |
-          git config --global user.email "your-username@users.noreply.github.com"
-          git config --global user.name "Your Name"
+          git config --global user.email "anizen242@gmail.com"
+          git config --global user.name "RecursivelyBetter"
           git add README.md
-          git commit -m "Update game board image and count"
+          git commit -m "Update game board image"
           git push
