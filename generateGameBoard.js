@@ -57,17 +57,17 @@ function generateGameBoard(gameState) {
             case 'A2':
                 ctx.font = "30px Arial";
                 ctx.fillStyle = "white";
-                ctx.fillText(move.player, 100 + 0.5 * boxSize, 100 + 1.5 * boxSize);
+                ctx.fillText(move.player, 100 + 1.5 * boxSize, 100 + 0.5 * boxSize);
                 break;
             case 'A3':
                 ctx.font = "30px Arial";
                 ctx.fillStyle = "white";
-                ctx.fillText(move.player, 100 + 0.5 * boxSize, 100 + 2.5 * boxSize);
+                ctx.fillText(move.player, 100 + 2.5 * boxSize, 100 + 1.5 * boxSize);
                 break;
             case 'B1':
                 ctx.font = "30px Arial";
                 ctx.fillStyle = "white";
-                ctx.fillText(move.player, 100 + 1.5 * boxSize, 100 + 0.5 * boxSize);
+                ctx.fillText(move.player, 100 + 0.5 * boxSize, 100 + 1.5 * boxSize);
                 break;
             case 'B2':
                 ctx.font = "30px Arial";
@@ -77,17 +77,17 @@ function generateGameBoard(gameState) {
             case 'B3':
                 ctx.font = "30px Arial";
                 ctx.fillStyle = "white";
-                ctx.fillText(move.player, 100 + 1.5 * boxSize, 100 + 2.5 * boxSize);
+                ctx.fillText(move.player, 100 + 2.5 * boxSize, 100 + 2.5 * boxSize);
                 break;
             case 'C1':
                 ctx.font = "30px Arial";
                 ctx.fillStyle = "white";
-                ctx.fillText(move.player, 100 + 2.5 * boxSize, 100 + 0.5 * boxSize);
+                ctx.fillText(move.player, 100 + 0.5 * boxSize, 100 + 2.5 * boxSize);
                 break;
             case 'C2':
                 ctx.font = "30px Arial";
                 ctx.fillStyle = "white";
-                ctx.fillText(move.player, 100 + 2.5 * boxSize, 100 + 1.5 * boxSize);
+                ctx.fillText(move.player, 100 + 1.5 * boxSize, 100 + 2.5 * boxSize);
                 break;
             case 'C3':
                 ctx.font = "30px Arial";
