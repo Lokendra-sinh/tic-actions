@@ -1,1 +1,1 @@
-![Game Board](https://tic-actions.s3.ap-south-1.amazonaws.com/game-board.png?t=1711818520)
+![Game Board](https://tic-actions.s3.ap-south-1.amazonaws.com/game-board.png?t=1711818708)
