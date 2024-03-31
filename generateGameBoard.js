@@ -4,7 +4,7 @@ function generateGameBoard(gameState) {
   const containerHeight = 500;
   const containerWidth = 500;
   const canvasHeight = containerHeight + 200;
-  const canvasWidth = containerWidth + 200;
+  const canvasWidth = containerWidth + 500;
   const boxSize = containerHeight / 3;
   const row = ["A", "B", "C"];
   const col = ["1", "2", "3"];
@@ -48,56 +48,74 @@ function generateGameBoard(gameState) {
 
     gameState.moves.forEach(move => {
 
-        switch (move.position){
-            case 'A1':
-                ctx.font = "30px Arial";
-                ctx.fillStyle = "white";
-                ctx.fillText(move.player, 100 + 0.5 * boxSize, 100 + 0.5 * boxSize);
-                break;
-            case 'A2':
-                ctx.font = "30px Arial";
-                ctx.fillStyle = "white";
-                ctx.fillText(move.player, 100 + 1.5 * boxSize, 100 + 0.5 * boxSize);
-                break;
-            case 'A3':
-                ctx.font = "30px Arial";
-                ctx.fillStyle = "white";
-                ctx.fillText(move.player, 100 + 2.5 * boxSize, 100 + 0.5 * boxSize);
-                break;
-            case 'B1':
-                ctx.font = "30px Arial";
-                ctx.fillStyle = "white";
-                ctx.fillText(move.player, 100 + 0.5 * boxSize, 100 + 1.5 * boxSize);
-                break;
-            case 'B2':
-                ctx.font = "30px Arial";
-                ctx.fillStyle = "white";
-                ctx.fillText(move.player, 100 + 1.5 * boxSize, 100 + 1.5 * boxSize);
-                break;
-            case 'B3':
-                ctx.font = "30px Arial";
-                ctx.fillStyle = "white";
-                ctx.fillText(move.player, 100 + 2.5 * boxSize, 100 + 1.5 * boxSize);
-                break;
-            case 'C1':
-                ctx.font = "30px Arial";
-                ctx.fillStyle = "white";
-                ctx.fillText(move.player, 100 + 0.5 * boxSize, 100 + 2.5 * boxSize);
-                break;
-            case 'C2':
-                ctx.font = "30px Arial";
-                ctx.fillStyle = "white";
-                ctx.fillText(move.player, 100 + 1.5 * boxSize, 100 + 2.5 * boxSize);
-                break;
-            case 'C3':
-                ctx.font = "30px Arial";
-                ctx.fillStyle = "white";
-                ctx.fillText(move.player, 100 + 2.5 * boxSize, 100 + 2.5 * boxSize);
-                break;
-            default:
-                break;
+        for(let i = 0; i < 3; i++){
+            for(let j = 0; j < 3; j++){
+                if(move.position === row[i] + col[j]){
+                    ctx.shadowColor = "white";
+                    ctx.shadowBlur = 10;
+                    ctx.font = "70px Arial";
+                    ctx.fillStyle = "white";
+                    ctx.textAlign = "center";
+                    ctx.textBaseline = "middle";
+                    ctx.lineWidth = 2;
+                    ctx.fillText(move.player, 100 + (j + 0.5) * boxSize, 100 + (i + 0.5) * boxSize);
+                }
+            }
         }
     })
+
+    ctx.shadowColor = null;
+    ctx.shadowBlur = 0;
+
+    // check for game over condition or draw or winner
+
+    const winningCombos = [
+        ["A1", "A2", "A3"],
+        ["B1", "B2", "B3"],
+        ["C1", "C2", "C3"],
+        ["A1", "B1", "C1"],
+        ["A2", "B2", "C2"],
+        ["A3", "B3", "C3"],
+        ["A1", "B2", "C3"],
+        ["A3", "B2", "C1"],
+    ];
+
+    let winner = null;
+    winningCombos.forEach(combo => {
+        const [a, b, c] = combo;
+        if(gameState.moves.some(m => m.position === a) && gameState.moves.some(m => m.position === b) && gameState.moves.some(m => m.position === c)){
+            const playerA = gameState.moves.find(m => m.position === a).player;
+            const playerB = gameState.moves.find(m => m.position === b).player;
+            const playerC = gameState.moves.find(m => m.position === c).player;
+
+            if(playerA === playerB && playerB === playerC){
+                winner = playerA;
+            }
+        }
+    });
+
+    if(winner !== null){
+        ctx.font = "70px Arial";
+        ctx.fillStyle = "red";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillText(winner + " wins!", 350, 100 + containerHeight / 2);
+    } else if(gameState.moves.length === 9){
+        ctx.font = "70px Arial";
+        ctx.fillStyle = "red";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillText("It's a draw!", 350, 100 + containerHeight / 2);
+    } else {
+    // render current move indicator
+    ctx.font = "30px Arial";
+    ctx.fillStyle = "yellow";
+    ctx.textAlign = "left";
+    ctx.fillText("Current Player: " + gameState.currentPlayer, 650, 100 + containerHeight / 2);
+    ctx.fillText("Last Move: " + gameState.moves[gameState.moves.length - 1].position, 650, 100 + containerHeight / 2 + 50);
+    ctx.fillText("Total Moves: " + gameState.moves.length, 650, 100 + containerHeight / 2 + 100);
+    ctx.fillText("Game in progress...", 650, 100 + containerHeight / 2 + 150);
+    }
 
   ctx.stroke();
   ctx.closePath();

@@ -51,13 +51,15 @@ async function main() {
     const move = process.env.MOVE;
 
     if (!gameState) {
+        if(!move){
+            return;
+        }
       gameState = {
         moves: [{ position: move, player: "X" }],
         currentPlayer: "O",
       };
     } else {
         if(gameState.moves.some(m => m.position === move)){
-            console.log("Invalid move");
             return;
         }
       const player = gameState.currentPlayer;
