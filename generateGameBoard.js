@@ -80,6 +80,7 @@ function generateGameBoard(gameState) {
         ["A3", "B2", "C1"],
     ];
 
+    let gameover = false;
     let winner = null;
     winningCombos.forEach(combo => {
         const [a, b, c] = combo;
@@ -90,6 +91,7 @@ function generateGameBoard(gameState) {
 
             if(playerA === playerB && playerB === playerC){
                 winner = playerA;
+                gameover = true;
             }
         }
     });
@@ -99,13 +101,15 @@ function generateGameBoard(gameState) {
         ctx.fillStyle = "red";
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
-        ctx.fillText(winner + " wins!", 350, 100 + containerHeight / 2);
+        ctx.fillText(winner + " wins!", 650, 100 + containerHeight / 2);
+        gameover = true;
     } else if(gameState.moves.length === 9){
         ctx.font = "70px Arial";
         ctx.fillStyle = "red";
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
-        ctx.fillText("It's a draw!", 350, 100 + containerHeight / 2);
+        ctx.fillText("It's a draw!", 650, 100 + containerHeight / 2);
+        gameover = true;
     } else {
     // render current move indicator
     ctx.font = "30px Arial";
@@ -120,7 +124,7 @@ function generateGameBoard(gameState) {
   ctx.stroke();
   ctx.closePath();
 
-  return canvas.toBuffer();
+  return { buffer: canvas.toBuffer(), gameover: gameover};
 }
 
 module.exports = generateGameBoard;

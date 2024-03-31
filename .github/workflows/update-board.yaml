@@ -1,9 +1,6 @@
 name: Update Game Board
 
 on:
-  push:
-    branches:
-      - master
   issues:
     types: [opened]
 

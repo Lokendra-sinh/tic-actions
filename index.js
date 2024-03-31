@@ -61,14 +61,20 @@ async function main() {
     } else {
         if(gameState.moves.some(m => m.position === move)){
             return;
-        }
+        } 
       const player = gameState.currentPlayer;
       gameState.moves.push({ position: move, player });
       gameState.currentPlayer = player === "X" ? "O" : "X";
     }
 
     await updateGameState(gameState);
-    const buffer = generateGameBoard(gameState);
+    const { buffer, gameOver} = generateGameBoard(gameState);
+    
+    if(gameOver){
+        gameState.moves = [];
+        gameState.currentPlayer = "X";
+        await updateGameState(gameState);
+    }
 
     const params = {
       Bucket: "tic-actions",
