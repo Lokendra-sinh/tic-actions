@@ -36,7 +36,9 @@ jobs:
       - name: Update README
         run: |
           timestamp=$(date +%s)
-          echo "![Game Board](https://tic-actions.s3.ap-south-1.amazonaws.com/game-board.png?t=${timestamp})" > README.md
+          echo "![Game Board](https://tic-actions.s3.ap-south-1.amazonaws.com/game-board.png?t=${timestamp})" > temp.md
+          cat instructions.md >> temp.md
+          mv temp.md README.md
 
       - name: Commit and push changes
         run: |
