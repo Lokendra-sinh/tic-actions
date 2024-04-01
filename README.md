@@ -1,4 +1,4 @@
-![Game Board](https://tic-actions.s3.ap-south-1.amazonaws.com/game-board.png?t=1711861941)
+![Game Board](https://tic-actions.s3.ap-south-1.amazonaws.com/game-board.png?t=1711985442)
 # 🎮 Welcome to Tic Tac Toe! 🎮
 
 Please give this repo a star if you like the build. It'll motivate me to create "Checker or Chess" game just using Github Actions. Thank You!
@@ -9,7 +9,7 @@ Get ready for an exciting game of Tic Tac Toe, right here on GitHub! This classi
 
 1. 🆕 To make a move, create a new issue in this repository.
 2. 📝 Put whatever you like in the title, but make sure you provide the position of your move in the description (A1, A2, A3, B1, B2, B3, C1, C2, C3)
-3. ⏳ The game will update automatically based on your move, and the updated game board will be displayed in the README.
+3. ⏳ The game will update automatically (usually around 10s) based on your move, and the updated game board will be displayed in the README.
 4. 🔄 Players take turns making moves until the game is won or ends in a draw.
 5. 🎲 The game board is represented as follows:
 
