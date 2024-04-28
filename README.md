@@ -1,4 +1,4 @@
-![Game Board](https://tic-actions.s3.ap-south-1.amazonaws.com/game-board.png?t=1711985442)
+![Game Board](https://tic-actions.s3.ap-south-1.amazonaws.com/game-board.png?t=1714307796)
 # 🎮 Welcome to Tic Tac Toe! 🎮
 
 Please give this repo a star if you like the build. It'll motivate me to create "Checker or Chess" game just using Github Actions. Thank You!
